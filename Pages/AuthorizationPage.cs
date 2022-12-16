@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab9_WebDriver
+namespace lab9_WebDriver.Pages
 {
-    internal class Authorization
+    public class AuthorizationPage
     {
         private Workspace _workspace;
-        public Authorization(Workspace workspace)
+        public AuthorizationPage(Workspace workspace)
         {
             _workspace = workspace;
         }
@@ -24,13 +24,13 @@ namespace lab9_WebDriver
         public void Authorize()
         {
             OpenAuthorizationPage();
-            
+
             _loginInput.SendKeys("+375298822499");
             _passwordInput.SendKeys("qwerty12345");
             Thread.Sleep(1000);
             _enterButton.Click();
 
-            Thread.Sleep(2000);
+            Thread.Sleep(15000);
         }
 
         public void OpenAuthorizationPage()

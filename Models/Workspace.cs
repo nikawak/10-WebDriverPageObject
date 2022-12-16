@@ -15,12 +15,17 @@ public class Workspace
     {
         if (driver == null)
             driver = new OpenQA.Selenium.Chrome.ChromeDriver(pathToDriver);
+        
     }
 
     public void OpenBrowserWithUrl(string url)
     {
         driver.Navigate().GoToUrl(url);
         driver.Manage().Window.Maximize();
+    }
+    public void RefreshPage()
+    {
+        driver.Navigate().Refresh();
     }
 
     public void CloseBrowser()

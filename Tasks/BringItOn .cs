@@ -1,4 +1,3 @@
-
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -6,12 +5,12 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace lab9_WebDriver;
+namespace lab9_WebDriver.Tasks;
 
 
 public class BringItOn : TestsClass
 {
-    protected override string? Url =>  "https://pastebin.com";
+    protected override string? Url => "https://pastebin.com";
 
 
     private string nameValue = "how to gain dominance among developers";
@@ -21,7 +20,7 @@ public class BringItOn : TestsClass
     [Test]
     public void Test1()
     {
-       
+
         var codeInput = findElement(By.Id("postform-text"));
         codeInput.SendKeys(codeValue);
 
@@ -42,7 +41,7 @@ public class BringItOn : TestsClass
 
         Assert.IsTrue(selectedFormat == "Bash");
 
-        
+
 
     }
 

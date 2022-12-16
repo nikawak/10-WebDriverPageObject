@@ -1,4 +1,3 @@
-
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -6,12 +5,12 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace lab9_WebDriver;
+namespace lab9_WebDriver.Tasks;
 
 
 public class ICanWinTests : TestsClass
 {
-    protected override string? Url =>  "https://pastebin.com";
+    protected override string? Url => "https://pastebin.com";
 
 
     private By btCreateNewPaste = By.XPath("//button[text()='Create New Paste']");
@@ -27,12 +26,12 @@ public class ICanWinTests : TestsClass
     {
 
         Thread.Sleep(1000);
-        findElement(By.XPath(("//span[@id='select2-postform-expiration-container']"))).Click();
+        findElement(By.XPath("//span[@id='select2-postform-expiration-container']")).Click();
         Thread.Sleep(1000);
-        findElement(By.XPath(($"//li[text()='10 Minutes']"))).Click();
-        findElement(By.XPath(("//input[@id='postform-name']"))).SendKeys(titleValue);
-        findElement(By.XPath(("//textarea"))).SendKeys(codeValue); 
-        
+        findElement(By.XPath($"//li[text()='10 Minutes']")).Click();
+        findElement(By.XPath("//input[@id='postform-name']")).SendKeys(titleValue);
+        findElement(By.XPath("//textarea")).SendKeys(codeValue);
+
 
 
         var btPaste = findElement(btCreateNewPaste);
@@ -44,7 +43,7 @@ public class ICanWinTests : TestsClass
 
         var currentUrl = driver.Url;
         Assert.IsTrue(currentUrl != Url);
-        
+
 
     }
 

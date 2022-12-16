@@ -1,9 +1,4 @@
-
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
+using lab9_WebDriver.Pages;
 
 
 namespace lab9_WebDriver;
@@ -13,42 +8,50 @@ public class MyTest : TestsClass
 {
     protected override string? Url => "https://5element.by";
 
-    private string product = "Samsung Galaxy M32";
-
     [Test]
-    public void Element5SiteTest_9()
+    public void Element5SiteTest_1()
     {
-        Thread.Sleep(5000);
-        Assert.Fail();
-        var authorization = new Authorization(workspace);
+        var authorization = new AuthorizationPage(workspace);
+        var main = new MainPage(workspace);
+        var product = new ProductPage(workspace);
+
         authorization.Authorize();
-        
-        findElement("//a[@class='h-drop h-user']").Click();
-        findElement("//input[@name='login']").SendKeys("+375298822499");
-        findElement("//input[@type='password']").SendKeys("qwerty12345");
-        Thread.Sleep(1000);
-        findElement("//button[@class='btn btn--lg btn--block']//span[text()='Войти']").Click();
-        Thread.Sleep(10000);
-
-        Thread.Sleep(1000);
-        var pathLike = "//div[@class='n-item__icon ic-favorite']//span";
-        int expected;
-        if(findElement(pathLike) == null)
-        {
-            expected = 1;
-        }
-        else
-        {
-            expected = 1 + int.Parse(findElement(pathLike).Text);
-        }
+       
+        int? expected = product.LikeCount == null? 1 : 1 + product.LikeCount;
         
 
-        findElement("//a[@class='nav-item h-discounts']").Click();
-        findElement("//img[@title='Скидки']").Click();
-        findElement("//div[@data-product_id='763365']//div[@class='c-part'][3]//div[@class='c-actions']//span").Click();
+        main.OpenDiscounts();
+        main.OpenSales();
+
+        product.Like("763365");
         Thread.Sleep(1000);
         
-        var actual = int.Parse(findElement(pathLike).Text);
+        var actual = product.LikeCount;
+        expected = expected < actual ? expected - 2 : expected;
+
+
+        Assert.AreEqual(actual, expected);
+
+    }
+    [Test]
+    public void Element5SiteTest_2()
+    {
+        var authorization = new AuthorizationPage(workspace);
+        var main = new MainPage(workspace);
+        var product = new ProductPage(workspace);
+
+        authorization.Authorize();
+
+        int? expected = product.CartCount == null ? 1 : 1 + product.CartCount;
+
+
+        main.OpenTelevisions();
+
+        product.AddToCart("748474");
+        Thread.Sleep(1000);
+
+        var actual = product.CartCount;
+
         Assert.AreEqual(actual, expected);
 
     }
