@@ -16,9 +16,13 @@ public class MyTest : TestsClass
     private string product = "Samsung Galaxy M32";
 
     [Test]
-    public void Element5Test()
+    public void Element5SiteTest_9()
     {
         Thread.Sleep(5000);
+        Assert.Fail();
+        var authorization = new Authorization(workspace);
+        authorization.Authorize();
+        
         findElement("//a[@class='h-drop h-user']").Click();
         findElement("//input[@name='login']").SendKeys("+375298822499");
         findElement("//input[@type='password']").SendKeys("qwerty12345");
@@ -46,30 +50,6 @@ public class MyTest : TestsClass
         
         var actual = int.Parse(findElement(pathLike).Text);
         Assert.AreEqual(actual, expected);
-
-
-        //Thread.Sleep(1000);
-        //string text = "";
-        //try
-        //{
-
-
-        //    var elements = driver.FindElements(By.ClassName("title"));
-        //        foreach (var eleme in elements)
-        //            if (eleme.Text == product)
-        //            {
-        //                text = eleme.Text;
-        //                Assert.True(text != "");
-
-        //            return;
-        //            }
-
-        //}
-        //catch
-        //{
-        //    Assert.Fail(); 
-        //}
-
 
     }
 

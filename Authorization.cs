@@ -1,0 +1,42 @@
+﻿using lab9_WebDriver.Models;
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab9_WebDriver
+{
+    internal class Authorization
+    {
+        private Workspace _workspace;
+        public Authorization(Workspace workspace)
+        {
+            _workspace = workspace;
+        }
+
+
+        private IWebElement _loginInput => _workspace.findElementByXPath("//input[@name='login']");
+        private IWebElement _passwordInput => _workspace.findElementByXPath("//input[@type='password']");
+        private IWebElement _enterButton => _workspace.findElementByXPath("//button[@class='btn btn--lg btn--block']//span[text()='Войти']");
+
+        public void Authorize()
+        {
+            OpenAuthorizationPage();
+            
+            _loginInput.SendKeys("+375298822499");
+            _passwordInput.SendKeys("qwerty12345");
+            Thread.Sleep(1000);
+            _enterButton.Click();
+
+            Thread.Sleep(2000);
+        }
+
+        public void OpenAuthorizationPage()
+        {
+            Thread.Sleep(5000);
+            _workspace.findElementByXPath("//a[@class='h-drop h-user']").Click();
+        }
+    }
+}
