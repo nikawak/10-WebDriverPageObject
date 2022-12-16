@@ -13,6 +13,7 @@ public class BringItOn : TestsClass
 {
     protected override string? Url =>  "https://pastebin.com";
 
+
     private string nameValue = "how to gain dominance among developers";
     private string codeValue = "git config --global user.name  'New Sheriff in Town' \ngit reset $(git commit-tree HEAD^{tree} -m 'Legacy code')\ngit push origin master --force";
 
