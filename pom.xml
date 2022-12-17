@@ -8,13 +8,26 @@
     <name>hello-ci</name>
     <url>https://github.com/vitalliuss/helloci</url>
     <properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <visual.studio.solution>MavenBuildTesting.sln</visual.studio.solution>
+        <visual.test.project.pattern>*.Tests</visual.test.project.pattern>
+        <dotnet.tool.version>3.5</dotnet.tool.version>
+        <sonar.language>cs</sonar.language>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+        <maven.compiler.source>3.1.0</maven.compiler.source>
+        <maven.compiler.target>3.1.0</maven.compiler.target>
     </properties>
     <build>
         <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>3.1.0</source>
+                <target>3.1.0</target>
+            </configuration>
+        </plugin>
             <plugin>
+            
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M1</version>
@@ -60,10 +73,26 @@
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
+            <plugin>
+        <groupId>org.codehaus.sonar-plugins.dotnet</groupId>
+        <artifactId>maven-dotnet-plugin</artifactId>
+        <extensions>true</extensions>
+    </plugin>
+
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <configuration>
+            <language>cs</language>
+        </configuration>
+        </plugin>
+    </plugins>
+       
     </build>
     <dependencies>
+    
         <dependency>
+
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>

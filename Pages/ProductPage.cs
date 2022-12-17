@@ -23,19 +23,26 @@ namespace lab9_WebDriver.Pages
         public int? CartCount => int.Parse(_cartCount.Text);
         public void Like(string productId)
         {
-            var likeElem = _workspace.findElementByXPath("//div[@data-product_id='" + productId + "']//div[@class='c-actions']//button[1]");
+            var likeElem = _workspace.findElementByXPath("//div[@data-product_id='" + productId + "']//div[@class='c-actions']//button[1]//span");
             likeElem.Click();                
+        }
+        public void GetNotify(string productId)
+        {
+            var likeElem = _workspace.findElementByXPath("//div[@data-product_id='" + productId + "']//div[@class='c-actions']//button[3]");
+            likeElem.Click();
         }
         public void AddToCart(string productId)
         {
-            var cartElem = _workspace.findElementByXPath("//div[@data-product_id='" + productId + "']//div[@class='c-controls']//button[1]");
+            var cartElem = _workspace.findElementByXPath("//div[@data-product_id='" + productId + "']//div[@class='c-controls']//button[1]//span");
             cartElem.Click();
             _workspace.RefreshPage();
         }
-        private void FindIcons()
+        public void Dislike(string productId)
         {
-
+            var delete = _workspace.findElementByXPath("//div[@data-product_id='748474']//a[@class='c-favorite']");
+            delete.Click();
         }
+
 
 
     }
