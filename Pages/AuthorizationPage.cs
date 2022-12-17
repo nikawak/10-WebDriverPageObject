@@ -21,12 +21,12 @@ namespace lab9_WebDriver.Pages
         private IWebElement _passwordInput => _workspace.findElementByXPath("//input[@type='password']");
         private IWebElement _enterButton => _workspace.findElementByXPath("//button[@class='btn btn--lg btn--block']//span[text()='Войти']");
 
-        public void Authorize()
+        public void Authorize(UserModel user)
         {
             OpenAuthorizationPage();
 
-            _loginInput.SendKeys("+375298822499");
-            _passwordInput.SendKeys("qwerty12345");
+            _loginInput.SendKeys(user.Phone);
+            _passwordInput.SendKeys(user.Password);
             Thread.Sleep(1000);
             _enterButton.Click();
 

@@ -1,3 +1,4 @@
+using lab9_WebDriver.Data;
 using lab9_WebDriver.Pages;
 
 
@@ -15,7 +16,8 @@ public class MyTest : TestsClass
         var main = new MainPage(workspace);
         var product = new ProductPage(workspace);
 
-        authorization.Authorize();
+        var defaultUser = MockUserStore.GetDefaultUser();
+        authorization.Authorize(defaultUser);
        
         int? expected = product.LikeCount == null? 1 : 1 + product.LikeCount;
         
@@ -40,7 +42,8 @@ public class MyTest : TestsClass
         var main = new MainPage(workspace);
         var product = new ProductPage(workspace);
 
-        authorization.Authorize();
+        var defaultUser = MockUserStore.GetDefaultUser();
+        authorization.Authorize(defaultUser);
 
         int? expected = product.CartCount == null ? 1 : 1 + product.CartCount;
 
